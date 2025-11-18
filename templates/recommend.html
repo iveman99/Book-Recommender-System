@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Recommend · iVeman Recommender System</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/phosphor-icons"></script>
+
+    <style>
+        :root{
+            --bg:#000;
+            --accent:#FF7A00;
+            --accent2:#ff9a4b;
+            --card:#0d0d0f;
+            --muted:#bfbfbf;
+            --radius:18px;
+            --container:1100px;
+        }
+
+        *{box-sizing:border-box;}
+        body{
+            margin:0;
+            background:var(--bg);
+            color:white;
+            font-family:"Poppins",sans-serif;
+            overflow-x:hidden;
+        }
+
+        /* NAVBAR (same across all pages) */
+        header{
+            background:rgba(255,122,0,0.95);
+            padding:18px 30px;
+            position:sticky;
+            top:0;
+            z-index:20;
+            backdrop-filter:blur(8px);
+            border-bottom-left-radius:18px;
+            border-bottom-right-radius:18px;
+            box-shadow:
+                0 0 20px rgba(255,122,0,0.6),
+                0 0 40px rgba(255,122,0,0.35);
+        }
+
+        .nav{
+            max-width:var(--container);
+            margin:auto;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .brand{
+            display:flex; flex-direction:column;
+        }
+        .brand .t{
+            font-size:22px;
+            font-weight:700;
+            color:#06110b;
+        }
+        .brand .s{
+            font-size:12px;
+            color:#06110b;
+            opacity:0.9;
+            font-weight:600;
+        }
+
+        .menu a{
+            text-decoration:none;
+            margin-left:25px;
+            font-weight:600;
+            color:#000;
+            padding:8px 14px;
+            border-radius:10px;
+            transition:0.25s ease;
+        }
+        .menu a:hover{
+            background:#000;
+            color:var(--accent);
+            box-shadow:0 0 14px rgba(255,122,0,0.6);
+            transform:translateY(-2px);
+        }
+
+        /* PAGE BODY */
+        .wrap{
+            max-width:var(--container);
+            margin:50px auto;
+            padding:0 20px;
+            text-align:center;
+        }
+
+        .title{
+            font-size:42px;
+            font-weight:700;
+            color:var(--accent);
+            text-shadow:0 0 22px rgba(255,122,0,0.7);
+        }
+
+        .note-box{
+            margin:35px auto;
+            background:rgba(255,255,255,0.05);
+            border:1px solid rgba(255,122,0,0.3);
+            padding:18px 22px;
+            border-radius:var(--radius);
+            backdrop-filter:blur(6px);
+            box-shadow:0 0 25px rgba(255,122,0,0.25);
+            text-align:left;
+            max-width:900px;
+        }
+        .note-box span{
+            font-weight:600;
+            color:var(--accent2);
+        }
+
+        /* SEARCH BAR */
+        .search-area{
+            display:flex;
+            justify-content:center;
+            gap:14px;
+            margin-top:25px;
+            flex-wrap:wrap;
+        }
+
+        input[type="text"]{
+            width:600px;
+            max-width:100%;
+            padding:16px;
+            border-radius:var(--radius);
+            border:2px solid rgba(255,122,0,0.4);
+            background:#111;
+            color:white;
+            font-size:16px;
+            box-shadow:0 0 14px rgba(255,122,0,0.25);
+        }
+
+        input[type="text"]:focus{
+            outline:none;
+            border-color:var(--accent);
+            box-shadow:0 0 20px rgba(255,122,0,0.5);
+        }
+
+        button{
+            padding:16px 32px;
+            background:var(--accent);
+            border:none;
+            border-radius:var(--radius);
+            font-weight:700;
+            cursor:pointer;
+            font-size:16px;
+            color:#000;
+            box-shadow:0 0 22px rgba(255,122,0,0.4);
+            transition:0.25s ease;
+        }
+        button:hover{
+            background:var(--accent2);
+            box-shadow:0 0 28px rgba(255,122,0,0.7);
+            transform:translateY(-2px);
+        }
+
+        .error-text{
+            color:#ff4d4d;
+            font-size:18px;
+            margin-top:15px;
+            font-weight:600;
+        }
+
+        /* RESULTS GRID */
+        .grid{
+            margin-top:45px;
+            display:grid;
+            grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+            gap:28px;
+        }
+
+        .card{
+            background:var(--card);
+            padding:18px;
+            border-radius:var(--radius);
+            border:1px solid rgba(255,122,0,0.3);
+            box-shadow:0 0 18px rgba(255,122,0,0.25);
+            transition:0.3s ease;
+        }
+        .card:hover{
+            transform:translateY(-6px);
+            box-shadow:0 0 25px rgba(255,122,0,0.45);
+            border-color:var(--accent);
+        }
+
+        .card img{
+            width:100%;
+            height:260px;
+            object-fit:cover;
+            border-radius:var(--radius);
+            margin-bottom:14px;
+        }
+
+        .card p{
+            margin:0;
+            font-size:16px;
+            font-weight:600;
+            color:white;
+        }
+
+        .card h4{
+            margin-top:6px;
+            color:var(--accent2);
+            font-size:14px;
+            font-weight:500;
+        }
+
+        footer{
+            text-align:center;
+            padding:26px;
+            margin-top:50px;
+            color:#dcdcdc;
+            border-top:1px solid rgba(255,255,255,0.05);
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="nav">
+        <div class="brand">
+            <div class="t">iVeman · Recommender System</div>
+            <div class="s">Book Recommendation Engine</div>
+        </div>
+
+        <nav class="menu">
+            <a href="/">Home</a>
+            <a href="/recommend">Recommend</a>
+            <a href="/about">About</a>
+        </nav>
+    </div>
+</header>
+
+<div class="wrap">
+
+    <h1 class="title">Find Similar Books</h1>
+
+    <div class="note-box">
+        <ph-info size="22"></ph-info>
+        <span> How to use:</span>
+        Copy a book title from the <strong>Home</strong> page → Paste it here → Avoid spelling errors →
+        Get fast & accurate ML-powered recommendations.
+    </div>
+
+    <form action="/recommend_books" method="post">
+        <div class="search-area">
+            <input name="user_input" type="text" placeholder="Enter an exact book name..." />
+            <button>Search</button>
+        </div>
+    </form>
+
+    {% if error %}
+        <p class="error-text">{{ error }}</p>
+    {% endif %}
+
+    {% if data %}
+    <div class="grid">
+        {% for i in data %}
+        <div class="card">
+            <img src="{{ i[2] }}" alt="Book Cover">
+            <p>{{ i[0] }}</p>
+            <h4>Author: {{ i[1] }}</h4>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</div>
+
+<footer>
+    © 2025 · Recreated with Passion by <strong>Veman Shrinivas Chippa</strong> · Making Data Speak.
+</footer>
+
+</body>
+</html>

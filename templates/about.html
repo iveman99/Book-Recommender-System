@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>About · iVeman Recommender System</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/phosphor-icons"></script>
+
+    <style>
+        :root{
+            --bg: #000;
+            --accent: #FF7A00;
+            --accent2: #ff9a4b;
+            --card: #0d0d0f;
+            --glass: rgba(255,255,255,0.05);
+            --muted: #bfbfbf;
+            --radius: 16px;
+            --container: 1200px;
+        }
+
+        *{box-sizing:border-box;}
+        body{
+            margin:0;
+            background: var(--bg);
+            color:white;
+            font-family:"Poppins", sans-serif;
+            overflow-x:hidden;
+        }
+
+        /* Smooth fade/slide animations */
+        .fade { opacity:0; transform:translateY(30px); animation:fadeUp .8s ease forwards; }
+        @keyframes fadeUp {
+            to { opacity:1; transform:translateY(0); }
+        }
+
+        /* UPDATED - MODERN NEON NAVBAR */
+        header{
+            background:rgba(255,122,0,0.95);
+            padding:18px 30px;
+            position:sticky;
+            top:0;
+            z-index:20;
+            backdrop-filter:blur(8px);
+            border-bottom-left-radius:18px;
+            border-bottom-right-radius:18px;
+            box-shadow:
+                0 0 20px rgba(255,122,0,0.6),
+                0 0 40px rgba(255,122,0,0.35);
+        }
+
+        .nav{
+            max-width:var(--container);
+            margin:auto;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .brand{
+            display:flex; flex-direction:column;
+        }
+        .brand .t{
+            font-size:22px; font-weight:700; color:#06110b;
+        }
+        .brand .s{
+            font-size:12px; color:#06110b; opacity:0.9; font-weight:600;
+        }
+
+        .menu a{
+            text-decoration:none;
+            margin-left:25px;
+            font-weight:600;
+            color:#000;
+            padding:8px 14px;
+            border-radius:10px;
+            transition:0.25s ease;
+        }
+
+        .menu a:hover{
+            background:#000;
+            color:var(--accent);
+            box-shadow:0 0 14px rgba(255,122,0,0.6);
+            transform:translateY(-2px);
+        }
+
+        /* MAIN */
+        .wrap{
+            max-width:var(--container);
+            margin:40px auto 80px;
+            padding:0 20px;
+        }
+
+        .title-sec h1{
+            color:var(--accent);
+            font-size:38px;
+            font-weight:700;
+            text-shadow:0 0 20px rgba(255,122,0,0.7);
+        }
+        .title-sec .lead{
+            margin-top:8px;
+            color:var(--muted);
+            max-width:800px;
+        }
+
+        .divider{
+            height:4px;
+            width:120px;
+            background:linear-gradient(90deg, var(--accent), transparent);
+            margin:20px 0;
+            border-radius:20px;
+            box-shadow:0 0 10px rgba(255,122,0,0.8);
+        }
+
+        /* GRID LAYOUT */
+        .grid{
+            display:grid;
+            grid-template-columns:2fr 1fr;
+            gap:25px;
+            margin-top:30px;
+        }
+        @media(max-width:900px){
+            .grid{ grid-template-columns:1fr; }
+        }
+
+        /* PANELS */
+        .panel{
+            background:var(--card);
+            padding:22px;
+            border-radius:var(--radius);
+            border:1px solid rgba(255,122,0,0.3);
+            box-shadow:0 0 25px rgba(255,122,0,0.35);
+        }
+
+        .panel h2{
+            margin:0;
+            font-size:22px;
+            color:var(--accent);
+            display:flex;
+            align-items:center;
+            gap:10px;
+            text-shadow:0 0 18px rgba(255,122,0,0.6);
+        }
+
+        .panel p{
+            color:#e5e5e5;
+            margin:12px 0 16px;
+            line-height:1.6;
+        }
+
+        /* STEP BOXES */
+        .step-box{
+            display:flex;
+            gap:14px;
+            background:rgba(255,255,255,0.02);
+            padding:12px;
+            border-radius:12px;
+            border:1px solid rgba(255,255,255,0.08);
+            margin-bottom:12px;
+            backdrop-filter:blur(6px);
+        }
+        .step-num{
+            background:linear-gradient(180deg, var(--accent), var(--accent2));
+            width:36px; height:36px;
+            font-weight:700;
+            font-size:15px;
+            border-radius:12px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            color:#000;
+            box-shadow:0 0 14px rgba(255,122,0,0.7);
+        }
+
+        /* SIDEBAR */
+        .sidebar h3{
+            margin-top:0;
+            color:var(--accent);
+            font-size:18px;
+            text-shadow:0 0 18px rgba(255,122,0,0.7);
+        }
+        .info-item{
+            background:rgba(255,255,255,0.02);
+            padding:10px 12px;
+            margin-bottom:10px;
+            border-radius:12px;
+            border:1px solid rgba(255,255,255,0.08);
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+
+        /* UPDATED BUTTONS (Email fixed) */
+        .btn{
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
+            padding:12px 18px;
+            background:var(--accent);
+            color:#000;
+            text-decoration:none;
+            font-weight:700;
+            border-radius:12px;
+            margin-right:10px;
+            margin-bottom:12px;
+            box-shadow:0 0 18px rgba(255,122,0,0.6);
+            transition:0.25s ease;
+        }
+
+        .btn:hover{
+            background:var(--accent2);
+            box-shadow:0 0 25px rgba(255,122,0,0.9);
+            transform:translateY(-3px);
+        }
+
+        footer{
+            text-align:center;
+            padding:26px;
+            margin-top:40px;
+            color:#dcdcdc;
+            border-top:1px solid rgba(255,255,255,0.05);
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="nav">
+        <div class="brand">
+            <div class="t">iVeman · Recommender System</div>
+            <div class="s">Book Recommender System</div>
+        </div>
+
+        <nav class="menu">
+            <a href="/">Home</a>
+            <a href="/recommend">Recommend</a>
+            <a href="/about">About</a>
+        </nav>
+    </div>
+</header>
+
+<!-- MAIN -->
+<div class="wrap">
+
+    <section class="title-sec fade">
+        <h1>About This Project</h1>
+        <div class="divider"></div>
+        <p class="lead">
+            A neon-powered, ML-driven book recommender system that understands what readers love — built with
+            precision, passion, and data intelligence.
+        </p>
+    </section>
+
+    <div class="grid fade">
+
+        <!-- LEFT SIDE -->
+        <div>
+
+            <!-- PROJECT PURPOSE -->
+            <div class="panel">
+                <h2><ph-lightning size="24"></ph-lightning> What is iVeman Recommender?</h2>
+                <p>
+                    This project blends <strong>machine learning</strong> with <strong>clean UI</strong> to help readers discover new
+                    books they are likely to enjoy. It learns patterns from real rating behaviour and uses similarity
+                    mathematics to deliver smart suggestions instantly.
+                </p>
+            </div>
+
+            <!-- DATASET -->
+            <div class="panel" style="margin-top:24px;">
+                <h2><ph-book-open size="24"></ph-book-open> Dataset · The Foundation</h2>
+                <p>
+                    We begin with a dataset containing thousands of readers, ratings, and books.
+                    But raw data is noisy — so we clean, filter, and refine it until only meaningful signals remain.
+                </p>
+                <div class="info-item"><ph-books size="20"></ph-books> Book Title, Author</div>
+                <div class="info-item"><ph-image size="20"></ph-image> Cover Image URL</div>
+                <div class="info-item"><ph-users size="20"></ph-users> Rating Counts & Popularity</div>
+                <div class="info-item"><ph-star size="20"></ph-star> Average Ratings</div>
+            </div>
+
+            <!-- ML LOGIC -->
+            <div class="panel" style="margin-top:24px;">
+                <h2><ph-brain size="24"></ph-brain> How the ML Model Works</h2>
+
+                <div class="step-box"><div class="step-num">1</div>
+                    <div><strong>Data Prep:</strong> Filter books with enough ratings for meaningful patterns.</div>
+                </div>
+
+                <div class="step-box"><div class="step-num">2</div>
+                    <div><strong>User–Book Matrix:</strong> Convert ratings into a grid that represents books as vectors.</div>
+                </div>
+
+                <div class="step-box"><div class="step-num">3</div>
+                    <div><strong>Cosine Similarity:</strong> Measure how closely two books relate based on user behaviour.</div>
+                </div>
+
+                <div class="step-box"><div class="step-num">4</div>
+                    <div><strong>Top Matches:</strong> Rank and return the most similar books.</div>
+                </div>
+
+                <div class="step-box"><div class="step-num">5</div>
+                    <div><strong>Flask Serving:</strong> Backend sends results to UI instantly.</div>
+                </div>
+
+            </div>
+
+            <!-- HOW TO USE -->
+            <div class="panel" style="margin-top:24px;">
+                <h2><ph-lightbulb size="24"></ph-lightbulb> How to Use This System</h2>
+                <p>
+                    ✔ Go to the <strong>Home</strong> page
+                    ✔ Copy the exact book title
+                    ✔ Paste it in the <strong>Recommend</strong> page
+                    ✔ Press Search
+                    ✔ Avoid typos — even small mistakes can show "Book not found"
+                </p>
+            </div>
+
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar fade">
+            <div class="panel">
+                <h3>Quick Info</h3>
+
+                <div class="info-item"><ph-gear size="20"></ph-gear> Collaborative Filtering</div>
+                <div class="info-item"><ph-cpu size="20"></ph-cpu> Cosine Similarity Matrix</div>
+                <div class="info-item"><ph-code size="20"></ph-code> Flask Backend</div>
+                <div class="info-item"><ph-database size="20"></ph-database> Pandas / NumPy</div>
+
+                <h3 style="margin-top:24px;">Connect With Me</h3>
+
+                <a href="https://www.linkedin.com/in/veman-chippa/" class="btn" target="_blank">
+                    <ph-linkedin-logo size="20"></ph-linkedin-logo> LinkedIn
+                </a>
+
+                <a href="https://github.com/iveman99" class="btn" target="_blank">
+                    <ph-github-logo size="20"></ph-github-logo> GitHub
+                </a>
+
+                <a href="https://iveman.vercel.app" class="btn" target="_blank">
+                    <ph-globe size="20"></ph-globe> Website
+                </a>
+
+                <a href="mailto:info.veman99@gmail.com" class="btn">
+                    <ph-envelope size="20"></ph-envelope> Email
+                </a>
+
+                <h3 style="margin-top:24px;">Creator</h3>
+                <div class="info-item">
+                    <ph-user size="20"></ph-user>
+                     Veman Shrinivas Chippa — Transforming data into intelligence, One model at a time>.
+                </div>
+
+            </div>
+        </aside>
+
+    </div>
+</div>
+
+<footer>
+    © 2025 · Recreated with Passion by <strong>Veman Shrinivas Chippa</strong> · Making Data Speak.
+</footer>
+
+</body>
+</html>
