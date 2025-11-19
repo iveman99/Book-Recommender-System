@@ -29,11 +29,13 @@
 
 ### 🔍 Recommend Page
 
-<img src="assets/recommend.png" />
+<img width="1913" height="948" alt="image" src="https://github.com/user-attachments/assets/d4e24e95-8b0e-4c97-b882-463dee4b6593" />
+
 
 ### ℹ️ About Page
 
-<img src="assets/about.png" />
+<img width="1890" height="936" alt="image" src="https://github.com/user-attachments/assets/c4d4fca4-52c5-4692-a427-eabe2b0dd30b" />
+
 
 ---
 
@@ -222,6 +224,7 @@ Feel free to fork and enhance the UI/ML logic.
 
 📧 **[info.veman99@gmail.com](mailto:info.veman99@gmail.com)**
 🔗 [https://www.linkedin.com/in/veman-chippa/](https://www.linkedin.com/in/veman-chippa/)
+🔗 [https://iveman.vercel.app/]
 
 ---
 
