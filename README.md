@@ -25,7 +25,7 @@
 
 ### ⭐ Home – Top 50 Books
 
-<img src="assets/home.png" />
+<img width="1895" height="945" alt="image" src="https://github.com/user-attachments/assets/dc736b3f-f469-478e-8541-2a6afc1b6f82" />
 
 ### 🔍 Recommend Page
 
