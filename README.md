@@ -16,7 +16,7 @@
 
 ## 🚀 **Live Demo**
 
-🔗 **Try the Deployed App:**
+🔗 **Try the Deployed WEB App:**
 👉 [https://iveman-booksenseai-berf.onrender.com/](https://iveman-booksenseai-berf.onrender.com/)
 
 ---
